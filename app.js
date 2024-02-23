@@ -63,6 +63,8 @@ const App = {
       outputStr.value = numberRegex.test(delOutput[delOutput.length - 1])
         ? delOutput
         : delOutput.slice(0, delOutput.length - 1);
+
+      message.value = '';
     }
 
     function handleCalculate(arr) {
