@@ -90,7 +90,10 @@ const App = {
         return number;
       } else {
         if (integerPart.length >= outputMaxLength) {
-          message.value = '錯誤：數值已超過 10 位數';
+          if (integerPart.length > outputMaxLength) {
+            message.value = '錯誤：數值已超過 10 位數';
+          }
+
           return Number(sign + integerPart.substring(0, outputMaxLength));
         }
 
