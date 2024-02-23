@@ -104,7 +104,10 @@ const App = {
 
         return Number(
           sign + integerPart + '.' + decimalPart.substring(0, remainDigits)
-        ).toFixed(remainDigits);
+        )
+          .toFixed(remainDigits)
+          .replace(/(\.\d*?[1-9])0+$/, '$1')
+          .replace(/\.$/, '');
       }
     }
 
