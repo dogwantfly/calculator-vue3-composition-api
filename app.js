@@ -114,7 +114,7 @@ const App = {
         operatorBtn.value = '';
         return;
       }
-
+      calculateResult = handleCalculate(calculateArr);
       outputStr.value =
         formatResult(calculateResult) == 0
           ? 0
