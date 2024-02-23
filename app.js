@@ -122,7 +122,6 @@ const App = {
         return;
       }
       calculateResult = handleCalculate(calculateArr);
-      console.log('🚀 ~ handleClickEnter ~ calculateResult:', calculateResult);
 
       outputStr.value = formatResult(calculateResult).toString();
 
