@@ -68,7 +68,7 @@ const App = {
     }
 
     function handleCalculate(arr) {
-      return eval(arr.join(operatorBtn.value)).toFixed(10);
+      return eval(arr.join(operatorBtn.value)).toFixed(outputMaxLength);
     }
 
     function formatResult(number) {
@@ -89,7 +89,12 @@ const App = {
       if (nonDotLength <= outputMaxLength) {
         return number;
       } else {
-        if (integerPart.length >= outputMaxLength) {
+        let remainDigits = outputMaxLength - integerPart.length;
+
+        if (
+          integerPart.length >= outputMaxLength ||
+          decimalPart.substring(0, remainDigits) == 0
+        ) {
           if (integerPart.length > outputMaxLength) {
             message.value = '錯誤：數值已超過 10 位數';
           }
@@ -97,7 +102,6 @@ const App = {
           return Number(sign + integerPart.substring(0, outputMaxLength));
         }
 
-        let remainDigits = outputMaxLength - integerPart.length;
         return Number(
           sign + integerPart + '.' + decimalPart.substring(0, remainDigits)
         ).toFixed(remainDigits);
@@ -118,10 +122,9 @@ const App = {
         return;
       }
       calculateResult = handleCalculate(calculateArr);
-      outputStr.value =
-        formatResult(calculateResult) == 0
-          ? 0
-          : formatResult(calculateResult).toString();
+      console.log('🚀 ~ handleClickEnter ~ calculateResult:', calculateResult);
+
+      outputStr.value = formatResult(calculateResult).toString();
 
       operatorBtn.value = '';
       calculateArr = [];
