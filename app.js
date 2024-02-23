@@ -68,24 +68,7 @@ const App = {
     }
 
     function handleCalculate(arr) {
-      return arr.reduce((acc, cur) => {
-        switch (operatorBtn.value) {
-          case '+':
-            return acc + cur;
-
-          case '-':
-            return acc - cur;
-
-          case '*':
-            return acc * cur;
-
-          case '/':
-            return acc / cur;
-
-          default:
-            break;
-        }
-      });
+      return eval(arr.join(operatorBtn.value)).toFixed(10);
     }
 
     function formatResult(number) {
@@ -114,7 +97,7 @@ const App = {
         let remainDigits = outputMaxLength - integerPart.length;
         return Number(
           sign + integerPart + '.' + decimalPart.substring(0, remainDigits)
-        );
+        ).toFixed(remainDigits);
       }
     }
 
@@ -132,9 +115,10 @@ const App = {
         return;
       }
 
-      calculateResult = handleCalculate(calculateArr);
-
-      outputStr.value = formatResult(calculateResult).toString();
+      outputStr.value =
+        formatResult(calculateResult) == 0
+          ? 0
+          : formatResult(calculateResult).toString();
 
       operatorBtn.value = '';
       calculateArr = [];
