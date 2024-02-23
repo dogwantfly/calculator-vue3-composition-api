@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator | vue3 composition api</title>
+    <link rel="stylesheet" href="./normalize.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="container">
+        <div class="message-content flex justify-end">{{message}}</div>
+        <div class="output-container flex">
+          <span class="operator-icon">{{operatorBtn}}</span>
+          <div class="output-content flex justify-end">
+            {{outputStr.length ? outputStr : '0'}}
+          </div>
+        </div>
+        <div class="input-container" @click="handleInput">
+          <div class="row">
+            <div class="col-6">
+              <button type="button" class="reset" @click="handleClickReset">
+                Reset
+              </button>
+            </div>
+            <div class="col-3">
+              <button type="button" class="del" @click="handleDelete">
+                Del
+              </button>
+            </div>
+            <div class="col-3">
+              <button
+                type="button"
+                :class="{'disabled': operatorBtn && operatorBtn !== '/'}"
+              >
+                /
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-3">
+              <button type="button">7</button>
+            </div>
+            <div class="col-3">
+              <button type="button">8</button>
+            </div>
+            <div class="col-3"><button type="button">9</button></div>
+            <div class="col-3">
+              <button
+                type="button"
+                :class="{'disabled': operatorBtn &&operatorBtn !== '*'}"
+              >
+                *
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-3"><button type="button">4</button></div>
+            <div class="col-3"><button type="button">5</button></div>
+            <div class="col-3"><button type="button">6</button></div>
+            <div class="col-3">
+              <button
+                type="button"
+                :class="{'disabled': operatorBtn &&operatorBtn !== '-'}"
+              >
+                -
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-3"><button type="button">1</button></div>
+            <div class="col-3"><button type="button">2</button></div>
+            <div class="col-3"><button type="button">3</button></div>
+            <div class="col-3">
+              <button
+                type="button"
+                :class="{'disabled': operatorBtn && operatorBtn !== '+'}"
+              >
+                +
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-9"><button type="button">0</button></div>
+            <div class="col-3">
+              <button type="button" @click="handleClickEnter">=</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+      }
+    </script>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
